@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Mini Diagnóstico | Por que toda tentativa de conversa vira dor?</title>
-  <meta name="description" content="Descubra qual padrão está pesando mais na sua relação hoje e receba a devolutiva no WhatsApp." />
+  <meta name="description" content="Responda ao mini diagnóstico e envie suas respostas no WhatsApp para receber sua devolutiva personalizada." />
 
   <style>
     :root{
@@ -31,10 +31,8 @@
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
     }
 
-    body{
-      min-height:100vh;
-    }
-
+    body{min-height:100vh}
+    img{max-width:100%;display:block}
     a{text-decoration:none}
 
     .top-bar{
@@ -54,13 +52,12 @@
     }
 
     .wrap{
-      max-width:900px;
+      max-width:920px;
       margin:0 auto;
     }
 
     .hero-card,
     .quiz-card,
-    .result-card,
     .final-card{
       background:#fff;
       border:1px solid var(--line);
@@ -72,6 +69,17 @@
       padding:28px 22px;
       text-align:center;
       margin-bottom:18px;
+    }
+
+    .logo-wrap{
+      display:flex;
+      justify-content:center;
+      margin-bottom:16px;
+    }
+
+    .logo{
+      max-height:110px;
+      width:auto;
     }
 
     .eyebrow{
@@ -101,7 +109,7 @@
     .subtitle{
       color:var(--soft);
       font-size:clamp(17px,2.4vw,21px);
-      max-width:720px;
+      max-width:760px;
       margin:0 auto;
       line-height:1.6;
     }
@@ -117,6 +125,39 @@
     .quiz-card{
       padding:22px 18px;
       margin-bottom:18px;
+    }
+
+    .lead-form{
+      margin-bottom:22px;
+      padding:18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#fff;
+    }
+
+    .lead-form label{
+      display:block;
+      font-size:14px;
+      font-weight:800;
+      color:var(--ink);
+      margin-bottom:8px;
+    }
+
+    .lead-form input{
+      width:100%;
+      min-height:52px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:14px 16px;
+      font-size:16px;
+      color:var(--ink);
+      outline:none;
+      transition:.2s ease;
+    }
+
+    .lead-form input:focus{
+      border-color:var(--rose);
+      box-shadow:0 0 0 4px rgba(201,55,110,.08);
     }
 
     .quiz-top{
@@ -273,12 +314,13 @@
       color:#fff;
     }
 
-    .result-card{
-      padding:28px 22px;
+    .final-card{
       display:none;
+      padding:28px 22px;
+      text-align:center;
     }
 
-    .result-pill{
+    .final-pill{
       display:inline-block;
       background:var(--rose-2);
       color:var(--rose);
@@ -291,7 +333,7 @@
       margin-bottom:14px;
     }
 
-    .result-title{
+    .final-title{
       font-size:clamp(28px,4vw,42px);
       line-height:1.1;
       margin:0 0 12px;
@@ -302,82 +344,51 @@
       color:transparent;
     }
 
-    .result-copy{
+    .final-copy{
       color:var(--soft);
       font-size:18px;
       line-height:1.65;
-      margin-bottom:18px;
-    }
-
-    .result-boxes{
-      display:grid;
-      gap:16px;
-      margin:18px 0 22px;
-    }
-
-    .info-box{
-      border:1px solid var(--line);
-      border-radius:18px;
-      padding:18px;
-      background:#fff;
-    }
-
-    .info-box.pink{background:var(--rose-2)}
-    .info-box.blue{background:var(--blue-2)}
-
-    .info-box h3{
-      margin:0 0 8px;
-      font-size:18px;
-      color:var(--ink);
-    }
-
-    .info-box p{
-      margin:0;
-      color:var(--soft);
-      font-size:16px;
-      line-height:1.55;
-    }
-
-    .result-actions{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      margin-top:12px;
+      margin:0 auto 22px;
+      max-width:680px;
     }
 
     .whats-btn{
       background:var(--green);
       color:#fff;
+      box-shadow:0 8px 18px rgba(0,0,0,.08);
     }
 
     .whats-btn:hover{filter:brightness(1.04)}
 
-    .final-card{
-      margin-top:18px;
-      padding:24px;
-      background:var(--blue-2);
-      border-color:#dbeafe;
+    .floating-whats{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      width:62px;
+      height:62px;
+      border-radius:50%;
+      background:var(--green);
+      box-shadow:0 12px 28px rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      z-index:1000;
     }
 
-    .final-card p{
-      margin:0;
-      color:var(--ink);
-      font-size:17px;
-      line-height:1.65;
+    .floating-whats svg{
+      width:30px;
+      height:30px;
+      fill:#fff;
     }
 
     .hidden{display:none !important}
 
-    @media(min-width:780px){
-      .result-boxes{
-        grid-template-columns:1fr 1fr;
-      }
-    }
-
     @media(max-width:640px){
-      .quiz-nav .btn,
-      .result-actions .btn{
+      .quiz-nav .btn{
         width:100%;
+      }
+      .logo{
+        max-height:82px;
       }
     }
   </style>
@@ -389,15 +400,23 @@
   <section class="hero">
     <div class="wrap">
       <div class="hero-card">
+        <div class="logo-wrap">
+          <img src="logo.png" alt="Logo O Amor Presente" class="logo">
+        </div>
         <div class="eyebrow">1 minuto de clareza</div>
         <h1>Por que toda tentativa de conversa vira dor?</h1>
         <p class="subtitle">
-          Descubra qual padrão está pesando mais na sua relação hoje e receba um próximo passo mais claro no WhatsApp.
+          Responda ao mini diagnóstico e envie suas respostas no WhatsApp para receber sua devolutiva personalizada.
         </p>
         <div class="divider"></div>
       </div>
 
       <div class="quiz-card" id="quizCard">
+        <div class="lead-form">
+          <label for="userName">Seu nome</label>
+          <input type="text" id="userName" placeholder="Digite seu nome para enviar junto com as respostas">
+        </div>
+
         <div class="quiz-top">
           <div class="step-label" id="stepLabel">Pergunta 1 de 4</div>
           <div class="step-label">Escolha a opção que mais parece com você</div>
@@ -418,38 +437,25 @@
         </div>
       </div>
 
-      <div class="result-card" id="resultCard">
-        <div class="result-pill">Seu resultado</div>
-        <h2 class="result-title" id="resultTitle"></h2>
-        <p class="result-copy" id="resultIntro"></p>
-
-        <div class="result-boxes">
-          <div class="info-box pink">
-            <h3>O que isso revela</h3>
-            <p id="resultReveal"></p>
-          </div>
-
-          <div class="info-box blue">
-            <h3>Primeiro passo</h3>
-            <p id="resultStep"></p>
-          </div>
-        </div>
-
-        <p class="result-copy" id="resultClosing"></p>
-
-        <div class="result-actions">
-          <a class="btn whats-btn" id="whatsBtn" href="#" target="_blank" rel="noopener">Receber devolutiva no WhatsApp</a>
-          <button class="btn btn-secondary" id="restartBtn" type="button">Refazer diagnóstico</button>
-        </div>
-      </div>
-
-      <div class="final-card">
-        <p>
-          Nenhum desses padrões significa que está tudo perdido. Significa só que vocês precisam parar de repetir o formato que machuca.
+      <div class="final-card" id="finalCard">
+        <div class="final-pill">Pronto</div>
+        <h2 class="final-title">Agora envie suas respostas</h2>
+        <p class="final-copy">
+          Seu resultado não aparece aqui. Toque no botão abaixo para enviar suas respostas no WhatsApp e receber sua devolutiva personalizada.
         </p>
+
+        <a class="btn whats-btn" id="whatsBtn" href="#" target="_blank" rel="noopener">
+          Enviar respostas no WhatsApp
+        </a>
       </div>
     </div>
   </section>
+
+  <a class="floating-whats" href="https://wa.me/5549998110445?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20mini%20diagn%C3%B3stico." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M20.5 3.5A10 10 0 0 0 3.2 17.7L2 22l4.4-1.2A10 10 0 1 0 20.5 3.5Zm-8.4 2.2c4.1 0 7.4 3.3 7.4 7.4a7.4 7.4 0 0 1-10.1 6.8l-.3-.1-2.6.7.7-2.5-.1-.3a7.4 7.4 0 0 1 5-11.9Zm4.2 9.8c-.2.6-1.1 1-1.5 1.1-.4.1-.9.1-1.5 0s-1.5-.5-2.6-1.1c-1-.6-1.8-1.6-2.1-2.1-.3-.5-.5-1.3-.1-1.9.2-.3.5-.8.8-.8h.6c.1 0 .4-.1.6.5.2.6.8 2 .9 2.2.1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.2.7.2.3.9 1.4 2.1 2 .9.5 1.6.6 1.9.4.3-.2.4-.5.6-.8.2-.3.5-.4.8-.3l1.9.9c.3.1.5.3.6.5Z"/>
+    </svg>
+  </a>
 
   <script>
     const WHATSAPP_NUMBER = "5549998110445";
@@ -459,74 +465,43 @@
         title: "Quando algo te incomoda na relação, o que costuma acontecer primeiro?",
         text: "Marque a opção que mais combina com a forma como isso acontece hoje.",
         options: [
-          { text: "Eu seguro por bastante tempo, vou relevando e tentando aguentar.", type: "A" },
-          { text: "Eu tento falar, mas o outro se fecha, muda de assunto ou foge.", type: "B" },
-          { text: "Eu prefiro ficar quieto para evitar conflito ou desgaste.", type: "C" },
-          { text: "A conversa só acontece quando a situação já virou um problema grande.", type: "D" }
+          { label: "A", text: "Eu seguro por bastante tempo, vou relevando e tentando aguentar." },
+          { label: "B", text: "Eu tento falar, mas o outro se fecha, muda de assunto ou foge." },
+          { label: "C", text: "Eu prefiro ficar quieto para evitar conflito ou desgaste." },
+          { label: "D", text: "A conversa só acontece quando a situação já virou um problema grande." }
         ]
       },
       {
         title: "Quando vocês entram num assunto delicado, qual cenário é mais comum?",
         text: "Escolha o que mais se repete entre vocês.",
         options: [
-          { text: "Eu já chego cheio de coisa acumulada e acabo falando tudo de uma vez.", type: "A" },
-          { text: "Eu tento insistir porque preciso resolver, mas o outro sai da conversa.", type: "B" },
-          { text: "Eu penso que não vai adiantar e deixo para lá.", type: "C" },
-          { text: "A gente fala só quando a dor já explodiu e os dois estão no limite.", type: "D" }
+          { label: "A", text: "Eu já chego cheio de coisa acumulada e acabo falando tudo de uma vez." },
+          { label: "B", text: "Eu tento insistir porque preciso resolver, mas o outro sai da conversa." },
+          { label: "C", text: "Eu penso que não vai adiantar e deixo para lá." },
+          { label: "D", text: "A gente fala só quando a dor já explodiu e os dois estão no limite." }
         ]
       },
       {
         title: "Qual dessas frases passa mais pela sua cabeça?",
         text: "Escolha a que mais parece com o seu padrão interno.",
         options: [
-          { text: "Se eu falar agora, posso piorar tudo — então vou levando.", type: "A" },
-          { text: "Eu preciso tocar nesse assunto, senão nunca muda.", type: "B" },
-          { text: "Melhor deixar quieto, porque vai dar ruim.", type: "C" },
-          { text: "A gente só consegue conversar quando já aconteceu alguma briga.", type: "D" }
+          { label: "A", text: "Se eu falar agora, posso piorar tudo — então vou levando." },
+          { label: "B", text: "Eu preciso tocar nesse assunto, senão nunca muda." },
+          { label: "C", text: "Melhor deixar quieto, porque vai dar ruim." },
+          { label: "D", text: "A gente só consegue conversar quando já aconteceu alguma briga." }
         ]
       },
       {
         title: "Hoje, o que mais pesa quando o assunto é conversar na relação?",
         text: "Escolha a opção que mais representa o ponto de dor principal.",
         options: [
-          { text: "Eu chego no limite porque vou engolindo até transbordar.", type: "A" },
-          { text: "Eu tento abrir conversa, mas sinto que falo sozinho.", type: "B" },
-          { text: "Eu me silencio para manter a paz, mesmo me machucando.", type: "C" },
-          { text: "Não existe espaço seguro; só falamos quando já virou crise.", type: "D" }
+          { label: "A", text: "Eu chego no limite porque vou engolindo até transbordar." },
+          { label: "B", text: "Eu tento abrir conversa, mas sinto que falo sozinho." },
+          { label: "C", text: "Eu me silencio para manter a paz, mesmo me machucando." },
+          { label: "D", text: "Não existe espaço seguro; só falamos quando já virou crise." }
         ]
       }
     ];
-
-    const results = {
-      A: {
-        title: "Você acumula e explode",
-        intro: "Você tenta aguentar, relevar, esperar o momento certo… até que chega num ponto em que não dá mais. Aí tudo sai junto.",
-        reveal: "Você não está exagerando. Você provavelmente está chegando tarde demais na conversa.",
-        step: "Começar a nomear antes de transbordar.",
-        closing: "Seu próximo passo não é falar mais forte. É falar mais cedo, com mais clareza."
-      },
-      B: {
-        title: "Você tenta, o outro foge",
-        intro: "Toda vez que você puxa um assunto importante, o outro se fecha, desconversa ou adia.",
-        reveal: "Talvez exista um padrão onde um pressiona e o outro evita.",
-        step: "Sair do impulso de resolver tudo naquele momento e estruturar melhor a entrada da conversa.",
-        closing: "Não é sobre desistir da conversa. É sobre mudar a forma de começar."
-      },
-      C: {
-        title: "Você cala para evitar conflito",
-        intro: "Você já pensa: 'não adianta', 'vai dar ruim', 'melhor deixar quieto'.",
-        reveal: "Você pode estar vivendo um desgaste silencioso que vai virando distância.",
-        step: "Parar de invalidar a sua necessidade de falar.",
-        closing: "Silêncio nem sempre traz paz. Às vezes, ele só adia a dor."
-      },
-      D: {
-        title: "Vocês só conversam quando já estão no limite",
-        intro: "A conversa não acontece como cuidado. Só acontece quando a dor já explodiu.",
-        reveal: "Falta espaço seguro e previsível para temas difíceis.",
-        step: "Criar uma conversa menor, mais curta, mais específica e menos reativa.",
-        closing: "A relação não precisa esperar a crise para pedir cuidado."
-      }
-    };
 
     const optionsEl = document.getElementById("options");
     const questionTitle = document.getElementById("questionTitle");
@@ -536,14 +511,9 @@
     const backBtn = document.getElementById("backBtn");
     const nextBtn = document.getElementById("nextBtn");
     const quizCard = document.getElementById("quizCard");
-    const resultCard = document.getElementById("resultCard");
-    const resultTitle = document.getElementById("resultTitle");
-    const resultIntro = document.getElementById("resultIntro");
-    const resultReveal = document.getElementById("resultReveal");
-    const resultStep = document.getElementById("resultStep");
-    const resultClosing = document.getElementById("resultClosing");
+    const finalCard = document.getElementById("finalCard");
     const whatsBtn = document.getElementById("whatsBtn");
-    const restartBtn = document.getElementById("restartBtn");
+    const userNameInput = document.getElementById("userName");
 
     let currentStep = 0;
     let answers = new Array(questions.length).fill(null);
@@ -557,23 +527,27 @@
 
       optionsEl.innerHTML = "";
 
-      q.options.forEach((option, index) => {
+      q.options.forEach((option) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "option";
 
-        if (answers[currentStep] === option.type) {
+        if (answers[currentStep] && answers[currentStep].label === option.label) {
           button.classList.add("selected");
         }
 
         button.innerHTML = `
-          <span class="option-tag">Opção ${index + 1}</span>
+          <span class="option-tag">Opção ${option.label}</span>
           <strong>${option.text}</strong>
           <span>Toque para selecionar esta resposta.</span>
         `;
 
         button.addEventListener("click", () => {
-          answers[currentStep] = option.type;
+          answers[currentStep] = {
+            label: option.label,
+            text: option.text,
+            question: q.title
+          };
           renderQuestion();
         });
 
@@ -581,55 +555,48 @@
       });
 
       backBtn.style.visibility = currentStep === 0 ? "hidden" : "visible";
-      nextBtn.textContent = currentStep === questions.length - 1 ? "Ver resultado" : "Próxima";
+      nextBtn.textContent = currentStep === questions.length - 1 ? "Finalizar" : "Próxima";
     }
 
-    function getFinalResult() {
-      const count = { A: 0, B: 0, C: 0, D: 0 };
+    function buildWhatsAppMessage() {
+      const name = userNameInput.value.trim();
+      const parts = [];
 
-      answers.forEach(answer => {
-        if (answer) count[answer]++;
-      });
+      parts.push("CONVERSA");
+      parts.push("");
 
-      let finalType = "A";
-      let max = -1;
-
-      for (const type of ["A", "B", "C", "D"]) {
-        if (count[type] > max) {
-          max = count[type];
-          finalType = type;
-        }
+      if (name) {
+        parts.push("Nome: " + name);
+        parts.push("");
       }
 
-      return finalType;
+      parts.push("Respostas do mini diagnóstico:");
+      parts.push("");
+
+      answers.forEach((answer, index) => {
+        parts.push(`Pergunta ${index + 1}: ${answer.label}. ${answer.text}`);
+      });
+
+      parts.push("");
+      parts.push("Quero receber minha devolutiva.");
+
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(parts.join("\n"))}`;
     }
 
-    function showResult() {
-      const finalType = getFinalResult();
-      const result = results[finalType];
-
-      resultTitle.textContent = result.title;
-      resultIntro.textContent = result.intro;
-      resultReveal.textContent = result.reveal;
-      resultStep.textContent = result.step;
-      resultClosing.textContent = result.closing;
-
-      const message = encodeURIComponent(
-        `CONVERSA
-
-Meu resultado no mini diagnóstico foi: ${result.title}.
-
-Quero receber a devolutiva desse resultado.`
-      );
-
-      whatsBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
-
+    function showFinalScreen() {
+      whatsBtn.href = buildWhatsAppMessage();
       quizCard.classList.add("hidden");
-      resultCard.style.display = "block";
+      finalCard.style.display = "block";
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     nextBtn.addEventListener("click", () => {
+      if (!userNameInput.value.trim()) {
+        alert("Preencha seu nome para continuar.");
+        userNameInput.focus();
+        return;
+      }
+
       if (!answers[currentStep]) {
         alert("Escolha uma opção para continuar.");
         return;
@@ -639,7 +606,7 @@ Quero receber a devolutiva desse resultado.`
         currentStep++;
         renderQuestion();
       } else {
-        showResult();
+        showFinalScreen();
       }
     });
 
@@ -648,15 +615,6 @@ Quero receber a devolutiva desse resultado.`
         currentStep--;
         renderQuestion();
       }
-    });
-
-    restartBtn.addEventListener("click", () => {
-      currentStep = 0;
-      answers = new Array(questions.length).fill(null);
-      resultCard.style.display = "none";
-      quizCard.classList.remove("hidden");
-      renderQuestion();
-      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
     renderQuestion();
