@@ -1,238 +1,665 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mini Diagnóstico | Por que toda tentativa de conversa vira dor?</title>
+  <meta name="description" content="Descubra qual padrão está pesando mais na sua relação hoje e receba a devolutiva no WhatsApp." />
 
-<title>Mini Diagnóstico – Por que toda tentativa de conversa vira dor?</title>
+  <style>
+    :root{
+      --rose:#C9376E;
+      --rose-2:#FCE9F0;
+      --blue:#4DA6FF;
+      --blue-2:#E6F3FF;
+      --ink:#0F172A;
+      --soft:#667085;
+      --line:#E9EEF5;
+      --bg:#FFFFFF;
+      --green:#25D366;
+      --shadow:0 14px 34px rgba(0,0,0,.06);
+      --radius:22px;
+    }
 
-<meta name="description" content="Descubra qual padrão está pesando mais na sua relação hoje. Faça o mini diagnóstico em 1 minuto.">
+    *{box-sizing:border-box}
 
-<style>
+    html,body{
+      margin:0;
+      padding:0;
+      background:var(--bg);
+      color:var(--ink);
+      font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+    }
 
-:root{
---rose:#C9376E;
---blue:#4DA6FF;
---ink:#0F172A;
---soft:#667085;
---line:#E9EEF5;
---bg:#FFFFFF;
-}
+    body{
+      min-height:100vh;
+    }
 
-*{box-sizing:border-box}
+    a{text-decoration:none}
 
-body{
-margin:0;
-font-family:system-ui,-apple-system,Segoe UI,Roboto;
-background:var(--bg);
-color:var(--ink);
-}
+    .top-bar{
+      background:var(--rose);
+      color:#fff;
+      text-align:center;
+      padding:14px 10px;
+      font-weight:900;
+      font-size:clamp(18px,4vw,28px);
+      letter-spacing:.04em;
+      text-transform:uppercase;
+    }
 
-.wrap{
-max-width:820px;
-margin:auto;
-padding:30px 20px;
-}
+    .hero{
+      padding:28px 16px 40px;
+      background:#fff;
+    }
 
-h1{
-font-size:38px;
-text-align:center;
-background:linear-gradient(90deg,var(--rose),var(--blue));
--webkit-background-clip:text;
-color:transparent;
-margin-bottom:10px;
-}
+    .wrap{
+      max-width:900px;
+      margin:0 auto;
+    }
 
-.subtitle{
-text-align:center;
-color:var(--soft);
-font-size:18px;
-margin-bottom:30px;
-}
+    .hero-card,
+    .quiz-card,
+    .result-card,
+    .final-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
 
-.card{
-background:white;
-border:1px solid var(--line);
-border-radius:16px;
-padding:22px;
-margin-bottom:16px;
-cursor:pointer;
-transition:.2s;
-}
+    .hero-card{
+      padding:28px 22px;
+      text-align:center;
+      margin-bottom:18px;
+    }
 
-.card:hover{
-border-color:var(--rose);
-box-shadow:0 10px 25px rgba(0,0,0,.05);
-}
+    .eyebrow{
+      display:inline-block;
+      background:var(--rose-2);
+      color:var(--rose);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
 
-input{
-display:none;
-}
+    h1{
+      font-size:clamp(32px,5vw,52px);
+      line-height:1.08;
+      margin:0 0 14px;
+      font-weight:900;
+      background:linear-gradient(90deg,var(--rose),var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
 
-.result{
-margin-top:30px;
-border-radius:16px;
-padding:24px;
-background:#f8fafc;
-display:none;
-}
+    .subtitle{
+      color:var(--soft);
+      font-size:clamp(17px,2.4vw,21px);
+      max-width:720px;
+      margin:0 auto;
+      line-height:1.6;
+    }
 
-.result h3{
-margin-top:0;
-color:var(--rose);
-}
+    .divider{
+      height:10px;
+      margin:22px auto 0;
+      max-width:300px;
+      border-radius:999px;
+      background:linear-gradient(90deg,var(--rose),var(--blue));
+    }
 
-.cta{
-margin-top:30px;
-text-align:center;
-}
+    .quiz-card{
+      padding:22px 18px;
+      margin-bottom:18px;
+    }
 
-.btn{
-display:inline-block;
-background:var(--rose);
-color:white;
-padding:14px 22px;
-border-radius:12px;
-font-weight:700;
-}
+    .quiz-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:14px;
+      flex-wrap:wrap;
+    }
 
-</style>
+    .step-label{
+      font-size:14px;
+      font-weight:800;
+      color:var(--soft);
+    }
+
+    .progress{
+      width:100%;
+      height:12px;
+      background:#F3F6FA;
+      border-radius:999px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      margin-bottom:22px;
+    }
+
+    .progress-bar{
+      width:25%;
+      height:100%;
+      background:linear-gradient(90deg,var(--rose),var(--blue));
+      transition:width .28s ease;
+    }
+
+    .question-title{
+      font-size:clamp(24px,3.6vw,34px);
+      line-height:1.2;
+      margin:0 0 10px;
+      font-weight:900;
+      color:var(--ink);
+    }
+
+    .question-text{
+      color:var(--soft);
+      font-size:17px;
+      margin:0 0 18px;
+      line-height:1.6;
+    }
+
+    .options{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:14px;
+      width:100%;
+    }
+
+    .option{
+      display:block;
+      width:100%;
+      border:1px solid var(--line);
+      background:#fff;
+      border-radius:18px;
+      padding:18px;
+      text-align:left;
+      cursor:pointer;
+      transition:.2s ease;
+      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      appearance:none;
+      -webkit-appearance:none;
+    }
+
+    .option:hover{
+      transform:translateY(-1px);
+      border-color:var(--rose);
+      box-shadow:0 12px 28px rgba(0,0,0,.07);
+    }
+
+    .option.selected{
+      border-color:var(--rose);
+      background:var(--rose-2);
+      box-shadow:0 12px 28px rgba(201,55,110,.12);
+    }
+
+    .option-tag{
+      display:inline-block;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.04em;
+      text-transform:uppercase;
+      padding:6px 10px;
+      border-radius:999px;
+      margin-bottom:10px;
+      background:var(--blue-2);
+      color:var(--blue);
+    }
+
+    .option strong{
+      display:block;
+      font-size:19px;
+      color:var(--ink);
+      margin-bottom:6px;
+      line-height:1.45;
+      white-space:normal;
+      word-break:break-word;
+    }
+
+    .option span{
+      display:block;
+      color:var(--soft);
+      font-size:15px;
+      line-height:1.55;
+    }
+
+    .quiz-nav{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      margin-top:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      min-height:50px;
+      padding:14px 20px;
+      border-radius:14px;
+      font-weight:900;
+      border:0;
+      cursor:pointer;
+      transition:.2s ease;
+      font-size:15px;
+      text-decoration:none;
+    }
+
+    .btn-primary{
+      background:var(--rose);
+      color:#fff;
+      box-shadow:0 8px 18px rgba(0,0,0,.08);
+    }
+
+    .btn-primary:hover{filter:brightness(1.04)}
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--blue);
+      border:2px solid var(--blue);
+    }
+
+    .btn-secondary:hover{
+      background:var(--blue);
+      color:#fff;
+    }
+
+    .result-card{
+      padding:28px 22px;
+      display:none;
+    }
+
+    .result-pill{
+      display:inline-block;
+      background:var(--rose-2);
+      color:var(--rose);
+      padding:8px 14px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      margin-bottom:14px;
+    }
+
+    .result-title{
+      font-size:clamp(28px,4vw,42px);
+      line-height:1.1;
+      margin:0 0 12px;
+      font-weight:900;
+      background:linear-gradient(90deg,var(--rose),var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .result-copy{
+      color:var(--soft);
+      font-size:18px;
+      line-height:1.65;
+      margin-bottom:18px;
+    }
+
+    .result-boxes{
+      display:grid;
+      gap:16px;
+      margin:18px 0 22px;
+    }
+
+    .info-box{
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:18px;
+      background:#fff;
+    }
+
+    .info-box.pink{background:var(--rose-2)}
+    .info-box.blue{background:var(--blue-2)}
+
+    .info-box h3{
+      margin:0 0 8px;
+      font-size:18px;
+      color:var(--ink);
+    }
+
+    .info-box p{
+      margin:0;
+      color:var(--soft);
+      font-size:16px;
+      line-height:1.55;
+    }
+
+    .result-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:12px;
+    }
+
+    .whats-btn{
+      background:var(--green);
+      color:#fff;
+    }
+
+    .whats-btn:hover{filter:brightness(1.04)}
+
+    .final-card{
+      margin-top:18px;
+      padding:24px;
+      background:var(--blue-2);
+      border-color:#dbeafe;
+    }
+
+    .final-card p{
+      margin:0;
+      color:var(--ink);
+      font-size:17px;
+      line-height:1.65;
+    }
+
+    .hidden{display:none !important}
+
+    @media(min-width:780px){
+      .result-boxes{
+        grid-template-columns:1fr 1fr;
+      }
+    }
+
+    @media(max-width:640px){
+      .quiz-nav .btn,
+      .result-actions .btn{
+        width:100%;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<div class="wrap">
+  <div class="top-bar">Mini Diagnóstico de Conversa</div>
 
-<h1>Mini diagnóstico</h1>
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-card">
+        <div class="eyebrow">1 minuto de clareza</div>
+        <h1>Por que toda tentativa de conversa vira dor?</h1>
+        <p class="subtitle">
+          Descubra qual padrão está pesando mais na sua relação hoje e receba um próximo passo mais claro no WhatsApp.
+        </p>
+        <div class="divider"></div>
+      </div>
 
-<p class="subtitle">
-Por que toda tentativa de conversa vira dor?
-</p>
+      <div class="quiz-card" id="quizCard">
+        <div class="quiz-top">
+          <div class="step-label" id="stepLabel">Pergunta 1 de 4</div>
+          <div class="step-label">Escolha a opção que mais parece com você</div>
+        </div>
 
-<p style="text-align:center;color:var(--soft)">
-Leia as frases abaixo e marque a que mais parece com você.
-</p>
+        <div class="progress" aria-hidden="true">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
 
-<label class="card">
-<input type="radio" name="quiz" value="A">
-<strong>A.</strong> Eu aguento, relevo e espero… até que chega uma hora que explodo.
-</label>
+        <h2 class="question-title" id="questionTitle"></h2>
+        <p class="question-text" id="questionText"></p>
 
-<label class="card">
-<input type="radio" name="quiz" value="B">
-<strong>B.</strong> Toda vez que tento conversar algo importante, o outro se fecha ou foge.
-</label>
+        <div class="options" id="options"></div>
 
-<label class="card">
-<input type="radio" name="quiz" value="C">
-<strong>C.</strong> Muitas vezes prefiro ficar quieto para evitar conflito.
-</label>
+        <div class="quiz-nav">
+          <button class="btn btn-secondary" id="backBtn" type="button">Voltar</button>
+          <button class="btn btn-primary" id="nextBtn" type="button">Próxima</button>
+        </div>
+      </div>
 
-<label class="card">
-<input type="radio" name="quiz" value="D">
-<strong>D.</strong> A gente só conversa quando já está no limite.
-</label>
+      <div class="result-card" id="resultCard">
+        <div class="result-pill">Seu resultado</div>
+        <h2 class="result-title" id="resultTitle"></h2>
+        <p class="result-copy" id="resultIntro"></p>
 
-<div id="result" class="result"></div>
+        <div class="result-boxes">
+          <div class="info-box pink">
+            <h3>O que isso revela</h3>
+            <p id="resultReveal"></p>
+          </div>
 
-<div class="cta">
-<a class="btn" href="https://wa.me/5549998110445?text=CONVERSA" target="_blank">
-Me chama com a palavra CONVERSA
-</a>
-</div>
+          <div class="info-box blue">
+            <h3>Primeiro passo</h3>
+            <p id="resultStep"></p>
+          </div>
+        </div>
 
-</div>
+        <p class="result-copy" id="resultClosing"></p>
 
-<script>
+        <div class="result-actions">
+          <a class="btn whats-btn" id="whatsBtn" href="#" target="_blank" rel="noopener">Receber devolutiva no WhatsApp</a>
+          <button class="btn btn-secondary" id="restartBtn" type="button">Refazer diagnóstico</button>
+        </div>
+      </div>
 
-const options = document.querySelectorAll('input[name="quiz"]')
-const resultBox = document.getElementById("result")
+      <div class="final-card">
+        <p>
+          Nenhum desses padrões significa que está tudo perdido. Significa só que vocês precisam parar de repetir o formato que machuca.
+        </p>
+      </div>
+    </div>
+  </section>
 
-options.forEach(option => {
+  <script>
+    const WHATSAPP_NUMBER = "5549998110445";
 
-option.addEventListener("change", () => {
+    const questions = [
+      {
+        title: "Quando algo te incomoda na relação, o que costuma acontecer primeiro?",
+        text: "Marque a opção que mais combina com a forma como isso acontece hoje.",
+        options: [
+          { text: "Eu seguro por bastante tempo, vou relevando e tentando aguentar.", type: "A" },
+          { text: "Eu tento falar, mas o outro se fecha, muda de assunto ou foge.", type: "B" },
+          { text: "Eu prefiro ficar quieto para evitar conflito ou desgaste.", type: "C" },
+          { text: "A conversa só acontece quando a situação já virou um problema grande.", type: "D" }
+        ]
+      },
+      {
+        title: "Quando vocês entram num assunto delicado, qual cenário é mais comum?",
+        text: "Escolha o que mais se repete entre vocês.",
+        options: [
+          { text: "Eu já chego cheio de coisa acumulada e acabo falando tudo de uma vez.", type: "A" },
+          { text: "Eu tento insistir porque preciso resolver, mas o outro sai da conversa.", type: "B" },
+          { text: "Eu penso que não vai adiantar e deixo para lá.", type: "C" },
+          { text: "A gente fala só quando a dor já explodiu e os dois estão no limite.", type: "D" }
+        ]
+      },
+      {
+        title: "Qual dessas frases passa mais pela sua cabeça?",
+        text: "Escolha a que mais parece com o seu padrão interno.",
+        options: [
+          { text: "Se eu falar agora, posso piorar tudo — então vou levando.", type: "A" },
+          { text: "Eu preciso tocar nesse assunto, senão nunca muda.", type: "B" },
+          { text: "Melhor deixar quieto, porque vai dar ruim.", type: "C" },
+          { text: "A gente só consegue conversar quando já aconteceu alguma briga.", type: "D" }
+        ]
+      },
+      {
+        title: "Hoje, o que mais pesa quando o assunto é conversar na relação?",
+        text: "Escolha a opção que mais representa o ponto de dor principal.",
+        options: [
+          { text: "Eu chego no limite porque vou engolindo até transbordar.", type: "A" },
+          { text: "Eu tento abrir conversa, mas sinto que falo sozinho.", type: "B" },
+          { text: "Eu me silencio para manter a paz, mesmo me machucando.", type: "C" },
+          { text: "Não existe espaço seguro; só falamos quando já virou crise.", type: "D" }
+        ]
+      }
+    ];
 
-let text = ""
+    const results = {
+      A: {
+        title: "Você acumula e explode",
+        intro: "Você tenta aguentar, relevar, esperar o momento certo… até que chega num ponto em que não dá mais. Aí tudo sai junto.",
+        reveal: "Você não está exagerando. Você provavelmente está chegando tarde demais na conversa.",
+        step: "Começar a nomear antes de transbordar.",
+        closing: "Seu próximo passo não é falar mais forte. É falar mais cedo, com mais clareza."
+      },
+      B: {
+        title: "Você tenta, o outro foge",
+        intro: "Toda vez que você puxa um assunto importante, o outro se fecha, desconversa ou adia.",
+        reveal: "Talvez exista um padrão onde um pressiona e o outro evita.",
+        step: "Sair do impulso de resolver tudo naquele momento e estruturar melhor a entrada da conversa.",
+        closing: "Não é sobre desistir da conversa. É sobre mudar a forma de começar."
+      },
+      C: {
+        title: "Você cala para evitar conflito",
+        intro: "Você já pensa: 'não adianta', 'vai dar ruim', 'melhor deixar quieto'.",
+        reveal: "Você pode estar vivendo um desgaste silencioso que vai virando distância.",
+        step: "Parar de invalidar a sua necessidade de falar.",
+        closing: "Silêncio nem sempre traz paz. Às vezes, ele só adia a dor."
+      },
+      D: {
+        title: "Vocês só conversam quando já estão no limite",
+        intro: "A conversa não acontece como cuidado. Só acontece quando a dor já explodiu.",
+        reveal: "Falta espaço seguro e previsível para temas difíceis.",
+        step: "Criar uma conversa menor, mais curta, mais específica e menos reativa.",
+        closing: "A relação não precisa esperar a crise para pedir cuidado."
+      }
+    };
 
-switch(option.value){
+    const optionsEl = document.getElementById("options");
+    const questionTitle = document.getElementById("questionTitle");
+    const questionText = document.getElementById("questionText");
+    const progressBar = document.getElementById("progressBar");
+    const stepLabel = document.getElementById("stepLabel");
+    const backBtn = document.getElementById("backBtn");
+    const nextBtn = document.getElementById("nextBtn");
+    const quizCard = document.getElementById("quizCard");
+    const resultCard = document.getElementById("resultCard");
+    const resultTitle = document.getElementById("resultTitle");
+    const resultIntro = document.getElementById("resultIntro");
+    const resultReveal = document.getElementById("resultReveal");
+    const resultStep = document.getElementById("resultStep");
+    const resultClosing = document.getElementById("resultClosing");
+    const whatsBtn = document.getElementById("whatsBtn");
+    const restartBtn = document.getElementById("restartBtn");
 
-case "A":
+    let currentStep = 0;
+    let answers = new Array(questions.length).fill(null);
 
-text = `
-<h3>Você acumula e explode</h3>
+    function renderQuestion() {
+      const q = questions[currentStep];
+      questionTitle.textContent = q.title;
+      questionText.textContent = q.text;
+      stepLabel.textContent = `Pergunta ${currentStep + 1} de ${questions.length}`;
+      progressBar.style.width = `${((currentStep + 1) / questions.length) * 100}%`;
 
-<p>Você tenta aguentar, relevar e esperar o momento certo… até que chega um ponto em que não dá mais.</p>
+      optionsEl.innerHTML = "";
 
-<p><strong>O que isso revela:</strong><br>
-Você não está exagerando. Provavelmente está chegando tarde demais na conversa.</p>
+      q.options.forEach((option, index) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option";
 
-<p><strong>Primeiro passo:</strong><br>
-Começar a nomear antes de transbordar.</p>
-`
+        if (answers[currentStep] === option.type) {
+          button.classList.add("selected");
+        }
 
-break
+        button.innerHTML = `
+          <span class="option-tag">Opção ${index + 1}</span>
+          <strong>${option.text}</strong>
+          <span>Toque para selecionar esta resposta.</span>
+        `;
 
+        button.addEventListener("click", () => {
+          answers[currentStep] = option.type;
+          renderQuestion();
+        });
 
-case "B":
+        optionsEl.appendChild(button);
+      });
 
-text = `
-<h3>Você tenta, o outro foge</h3>
+      backBtn.style.visibility = currentStep === 0 ? "hidden" : "visible";
+      nextBtn.textContent = currentStep === questions.length - 1 ? "Ver resultado" : "Próxima";
+    }
 
-<p>Toda vez que você puxa um assunto importante, o outro se fecha ou desconversa.</p>
+    function getFinalResult() {
+      const count = { A: 0, B: 0, C: 0, D: 0 };
 
-<p><strong>O que isso revela:</strong><br>
-Pode existir um padrão onde um pressiona e o outro evita.</p>
+      answers.forEach(answer => {
+        if (answer) count[answer]++;
+      });
 
-<p><strong>Primeiro passo:</strong><br>
-Estruturar melhor a entrada da conversa.</p>
-`
+      let finalType = "A";
+      let max = -1;
 
-break
+      for (const type of ["A", "B", "C", "D"]) {
+        if (count[type] > max) {
+          max = count[type];
+          finalType = type;
+        }
+      }
 
+      return finalType;
+    }
 
-case "C":
+    function showResult() {
+      const finalType = getFinalResult();
+      const result = results[finalType];
 
-text = `
-<h3>Você cala para evitar conflito</h3>
+      resultTitle.textContent = result.title;
+      resultIntro.textContent = result.intro;
+      resultReveal.textContent = result.reveal;
+      resultStep.textContent = result.step;
+      resultClosing.textContent = result.closing;
 
-<p>Você já pensa: “não adianta”, “vai dar ruim”, “melhor deixar quieto”.</p>
+      const message = encodeURIComponent(
+        `CONVERSA
 
-<p><strong>O que isso revela:</strong><br>
-Pode existir um desgaste silencioso que vira distância.</p>
+Meu resultado no mini diagnóstico foi: ${result.title}.
 
-<p><strong>Primeiro passo:</strong><br>
-Parar de invalidar a sua necessidade de falar.</p>
-`
+Quero receber a devolutiva desse resultado.`
+      );
 
-break
+      whatsBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${message}`;
 
+      quizCard.classList.add("hidden");
+      resultCard.style.display = "block";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-case "D":
+    nextBtn.addEventListener("click", () => {
+      if (!answers[currentStep]) {
+        alert("Escolha uma opção para continuar.");
+        return;
+      }
 
-text = `
-<h3>Vocês só conversam quando já estão no limite</h3>
+      if (currentStep < questions.length - 1) {
+        currentStep++;
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    });
 
-<p>A conversa não acontece como cuidado. Só quando a dor explode.</p>
+    backBtn.addEventListener("click", () => {
+      if (currentStep > 0) {
+        currentStep--;
+        renderQuestion();
+      }
+    });
 
-<p><strong>O que isso revela:</strong><br>
-Falta espaço seguro para conversas difíceis.</p>
+    restartBtn.addEventListener("click", () => {
+      currentStep = 0;
+      answers = new Array(questions.length).fill(null);
+      resultCard.style.display = "none";
+      quizCard.classList.remove("hidden");
+      renderQuestion();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
 
-<p><strong>Primeiro passo:</strong><br>
-Criar conversas menores, mais curtas e menos reativas.</p>
-`
-
-break
-
-}
-
-resultBox.innerHTML = text
-resultBox.style.display = "block"
-
-})
-
-})
-
-</script>
-
+    renderQuestion();
+  </script>
 </body>
 </html>
