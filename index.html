@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Mini Diagnóstico – Por que toda tentativa de conversa vira dor?</title>
+
+<meta name="description" content="Descubra qual padrão está pesando mais na sua relação hoje. Faça o mini diagnóstico em 1 minuto.">
+
+<style>
+
+:root{
+--rose:#C9376E;
+--blue:#4DA6FF;
+--ink:#0F172A;
+--soft:#667085;
+--line:#E9EEF5;
+--bg:#FFFFFF;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+background:var(--bg);
+color:var(--ink);
+}
+
+.wrap{
+max-width:820px;
+margin:auto;
+padding:30px 20px;
+}
+
+h1{
+font-size:38px;
+text-align:center;
+background:linear-gradient(90deg,var(--rose),var(--blue));
+-webkit-background-clip:text;
+color:transparent;
+margin-bottom:10px;
+}
+
+.subtitle{
+text-align:center;
+color:var(--soft);
+font-size:18px;
+margin-bottom:30px;
+}
+
+.card{
+background:white;
+border:1px solid var(--line);
+border-radius:16px;
+padding:22px;
+margin-bottom:16px;
+cursor:pointer;
+transition:.2s;
+}
+
+.card:hover{
+border-color:var(--rose);
+box-shadow:0 10px 25px rgba(0,0,0,.05);
+}
+
+input{
+display:none;
+}
+
+.result{
+margin-top:30px;
+border-radius:16px;
+padding:24px;
+background:#f8fafc;
+display:none;
+}
+
+.result h3{
+margin-top:0;
+color:var(--rose);
+}
+
+.cta{
+margin-top:30px;
+text-align:center;
+}
+
+.btn{
+display:inline-block;
+background:var(--rose);
+color:white;
+padding:14px 22px;
+border-radius:12px;
+font-weight:700;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<h1>Mini diagnóstico</h1>
+
+<p class="subtitle">
+Por que toda tentativa de conversa vira dor?
+</p>
+
+<p style="text-align:center;color:var(--soft)">
+Leia as frases abaixo e marque a que mais parece com você.
+</p>
+
+<label class="card">
+<input type="radio" name="quiz" value="A">
+<strong>A.</strong> Eu aguento, relevo e espero… até que chega uma hora que explodo.
+</label>
+
+<label class="card">
+<input type="radio" name="quiz" value="B">
+<strong>B.</strong> Toda vez que tento conversar algo importante, o outro se fecha ou foge.
+</label>
+
+<label class="card">
+<input type="radio" name="quiz" value="C">
+<strong>C.</strong> Muitas vezes prefiro ficar quieto para evitar conflito.
+</label>
+
+<label class="card">
+<input type="radio" name="quiz" value="D">
+<strong>D.</strong> A gente só conversa quando já está no limite.
+</label>
+
+<div id="result" class="result"></div>
+
+<div class="cta">
+<a class="btn" href="https://wa.me/5549998110445?text=CONVERSA" target="_blank">
+Me chama com a palavra CONVERSA
+</a>
+</div>
+
+</div>
+
+<script>
+
+const options = document.querySelectorAll('input[name="quiz"]')
+const resultBox = document.getElementById("result")
+
+options.forEach(option => {
+
+option.addEventListener("change", () => {
+
+let text = ""
+
+switch(option.value){
+
+case "A":
+
+text = `
+<h3>Você acumula e explode</h3>
+
+<p>Você tenta aguentar, relevar e esperar o momento certo… até que chega um ponto em que não dá mais.</p>
+
+<p><strong>O que isso revela:</strong><br>
+Você não está exagerando. Provavelmente está chegando tarde demais na conversa.</p>
+
+<p><strong>Primeiro passo:</strong><br>
+Começar a nomear antes de transbordar.</p>
+`
+
+break
+
+
+case "B":
+
+text = `
+<h3>Você tenta, o outro foge</h3>
+
+<p>Toda vez que você puxa um assunto importante, o outro se fecha ou desconversa.</p>
+
+<p><strong>O que isso revela:</strong><br>
+Pode existir um padrão onde um pressiona e o outro evita.</p>
+
+<p><strong>Primeiro passo:</strong><br>
+Estruturar melhor a entrada da conversa.</p>
+`
+
+break
+
+
+case "C":
+
+text = `
+<h3>Você cala para evitar conflito</h3>
+
+<p>Você já pensa: “não adianta”, “vai dar ruim”, “melhor deixar quieto”.</p>
+
+<p><strong>O que isso revela:</strong><br>
+Pode existir um desgaste silencioso que vira distância.</p>
+
+<p><strong>Primeiro passo:</strong><br>
+Parar de invalidar a sua necessidade de falar.</p>
+`
+
+break
+
+
+case "D":
+
+text = `
+<h3>Vocês só conversam quando já estão no limite</h3>
+
+<p>A conversa não acontece como cuidado. Só quando a dor explode.</p>
+
+<p><strong>O que isso revela:</strong><br>
+Falta espaço seguro para conversas difíceis.</p>
+
+<p><strong>Primeiro passo:</strong><br>
+Criar conversas menores, mais curtas e menos reativas.</p>
+`
+
+break
+
+}
+
+resultBox.innerHTML = text
+resultBox.style.display = "block"
+
+})
+
+})
+
+</script>
+
+</body>
+</html>
