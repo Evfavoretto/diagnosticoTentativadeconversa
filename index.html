@@ -3,78 +3,116 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title> Diagnóstico | Por que toda tentativa de conversa vira dor?</title>
-  <meta name="description" content="Responda ao mini diagnóstico e envie suas respostas no WhatsApp para receber sua devolutiva personalizada." />
+  <title>Diagnóstico | Por que toda tentativa de conversa vira dor?</title>
+  <meta name="description" content="Descubra qual padrão invisível pode estar por trás da dor nas conversas da sua relação. Responda ao diagnóstico e envie no WhatsApp para receber sua devolutiva." />
+
+  <!-- SEO básico -->
+  <meta property="og:title" content="Diagnóstico | Por que toda tentativa de conversa vira dor?" />
+  <meta property="og:description" content="Responda ao diagnóstico e descubra qual padrão invisível pode estar influenciando suas conversas dentro da relação." />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     :root{
-      --rose:#C9376E;
-      --rose-2:#FCE9F0;
-      --blue:#4DA6FF;
-      --blue-2:#E6F3FF;
-      --ink:#0F172A;
-      --soft:#667085;
-      --line:#E9EEF5;
-      --bg:#FFFFFF;
+      --rose:#C45A7A;
+      --rose-soft:#F6D4DD;
+      --blue:#7BB6E8;
+      --blue-soft:#DDEEFE;
+      --lavender:#EDE7F6;
+      --peach:#F9E3D6;
+      --ink:#243042;
+      --soft:#6B7280;
+      --bg:#FFFDFB;
+      --line:#E9E4E1;
       --green:#25D366;
-      --shadow:0 14px 34px rgba(0,0,0,.06);
-      --radius:22px;
+      --white:#FFFFFF;
+      --shadow:0 14px 34px rgba(36,48,66,.08);
+      --shadow-soft:0 10px 26px rgba(36,48,66,.05);
+      --radius-xl:24px;
+      --radius-lg:20px;
+      --radius-md:16px;
+      --radius-sm:12px;
+      --container:1080px;
     }
 
     *{box-sizing:border-box}
 
-    html,body{
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
       margin:0;
       padding:0;
       background:var(--bg);
       color:var(--ink);
       font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,"Helvetica Neue",Arial,sans-serif;
+      line-height:1.5;
     }
 
-    body{min-height:100vh}
-    img{max-width:100%;display:block}
-    a{text-decoration:none}
+    img{
+      max-width:100%;
+      display:block;
+    }
+
+    a{
+      text-decoration:none;
+      color:inherit;
+    }
+
+    button,
+    input{
+      font:inherit;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible{
+      outline:3px solid rgba(123,182,232,.45);
+      outline-offset:2px;
+    }
 
     .top-bar{
       background:var(--rose);
       color:#fff;
       text-align:center;
-      padding:14px 10px;
+      padding:15px 12px;
       font-weight:900;
       font-size:clamp(18px,4vw,28px);
       letter-spacing:.04em;
       text-transform:uppercase;
     }
 
-    .hero{
-      padding:28px 16px 40px;
-      background:#fff;
+    .section{
+      padding:28px 16px;
     }
 
     .wrap{
-      max-width:920px;
+      max-width:var(--container);
       margin:0 auto;
     }
 
     .hero-card,
+    .info-card,
+    .patterns-shell,
     .quiz-card,
     .final-card{
-      background:#fff;
+      background:var(--white);
       border:1px solid var(--line);
-      border-radius:var(--radius);
+      border-radius:var(--radius-xl);
       box-shadow:var(--shadow);
     }
 
     .hero-card{
-      padding:28px 22px;
+      padding:30px 22px;
       text-align:center;
-      margin-bottom:18px;
+      margin-top:10px;
     }
 
-      
     .eyebrow{
       display:inline-block;
-      background:var(--rose-2);
+      background:var(--lavender);
       color:var(--rose);
       padding:8px 14px;
       border-radius:999px;
@@ -86,9 +124,9 @@
     }
 
     h1{
-      font-size:clamp(32px,5vw,52px);
-      line-height:1.08;
       margin:0 0 14px;
+      font-size:clamp(32px,5vw,56px);
+      line-height:1.06;
       font-weight:900;
       background:linear-gradient(90deg,var(--rose),var(--blue));
       -webkit-background-clip:text;
@@ -97,24 +135,187 @@
     }
 
     .subtitle{
+      margin:0 auto;
+      max-width:780px;
       color:var(--soft);
       font-size:clamp(17px,2.4vw,21px);
-      max-width:760px;
-      margin:0 auto;
-      line-height:1.6;
+      line-height:1.7;
     }
 
     .divider{
       height:10px;
+      max-width:320px;
       margin:22px auto 0;
-      max-width:300px;
       border-radius:999px;
       background:linear-gradient(90deg,var(--rose),var(--blue));
     }
 
+    .grid{
+      display:grid;
+      gap:18px;
+    }
+
+    .two-col{
+      grid-template-columns:1fr;
+    }
+
+    .info-card{
+      padding:24px 20px;
+    }
+
+    .section-kicker{
+      display:inline-block;
+      margin-bottom:10px;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:12px;
+      font-weight:900;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      background:var(--blue-soft);
+      color:#346d99;
+    }
+
+    .section-title{
+      margin:0 0 12px;
+      font-size:clamp(28px,4.2vw,42px);
+      line-height:1.12;
+      font-weight:900;
+      color:var(--ink);
+    }
+
+    .section-title.gradient{
+      background:linear-gradient(90deg,var(--rose),var(--blue));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+    }
+
+    .copy{
+      margin:0;
+      color:var(--soft);
+      font-size:17px;
+      line-height:1.8;
+    }
+
+    .copy + .copy{
+      margin-top:12px;
+    }
+
+    .patterns-shell{
+      padding:26px 20px;
+    }
+
+    .patterns-head{
+      text-align:center;
+      max-width:860px;
+      margin:0 auto 22px;
+    }
+
+    .patterns-grid{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:16px;
+    }
+
+    .pattern-card{
+      border:1px solid var(--line);
+      border-radius:20px;
+      padding:20px 18px;
+      box-shadow:var(--shadow-soft);
+    }
+
+    .pattern-card.one{background:var(--rose-soft)}
+    .pattern-card.two{background:var(--blue-soft)}
+    .pattern-card.three{background:var(--lavender)}
+    .pattern-card.four{background:var(--peach)}
+
+    .pattern-top{
+      display:flex;
+      flex-wrap:wrap;
+      align-items:center;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .pattern-num{
+      display:inline-flex;
+      width:34px;
+      height:34px;
+      border-radius:50%;
+      align-items:center;
+      justify-content:center;
+      background:#fff;
+      color:var(--ink);
+      font-size:14px;
+      font-weight:900;
+      border:1px solid rgba(0,0,0,.06);
+      flex:0 0 auto;
+    }
+
+    .pattern-name{
+      margin:0;
+      font-size:22px;
+      line-height:1.2;
+      font-weight:900;
+      color:var(--ink);
+    }
+
+    .pattern-child{
+      display:inline-block;
+      padding:7px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.86);
+      color:var(--ink);
+      font-size:12px;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+    }
+
+    .pattern-text{
+      margin:0;
+      color:#495468;
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .mini-note{
+      margin-top:18px;
+      padding:16px 18px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid var(--line);
+      color:var(--soft);
+      font-size:16px;
+      line-height:1.7;
+    }
+
+    .diagnostic-intro{
+      text-align:center;
+      padding:6px 0 0;
+    }
+
+    .check-list{
+      display:grid;
+      gap:10px;
+      max-width:760px;
+      margin:18px auto 0;
+      text-align:left;
+    }
+
+    .check-item{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:16px;
+      padding:14px 16px;
+      color:var(--ink);
+      font-weight:700;
+      box-shadow:var(--shadow-soft);
+    }
+
     .quiz-card{
       padding:22px 18px;
-      margin-bottom:18px;
     }
 
     .lead-form{
@@ -135,19 +336,19 @@
 
     .lead-form input{
       width:100%;
-      min-height:52px;
+      min-height:54px;
       border:1px solid var(--line);
       border-radius:14px;
       padding:14px 16px;
       font-size:16px;
       color:var(--ink);
-      outline:none;
+      background:#fff;
       transition:.2s ease;
     }
 
     .lead-form input:focus{
       border-color:var(--rose);
-      box-shadow:0 0 0 4px rgba(201,55,110,.08);
+      box-shadow:0 0 0 4px rgba(196,90,122,.10);
     }
 
     .quiz-top{
@@ -168,7 +369,7 @@
     .progress{
       width:100%;
       height:12px;
-      background:#F3F6FA;
+      background:#F4F1F0;
       border-radius:999px;
       overflow:hidden;
       border:1px solid var(--line);
@@ -214,7 +415,7 @@
       text-align:left;
       cursor:pointer;
       transition:.2s ease;
-      box-shadow:0 8px 22px rgba(0,0,0,.03);
+      box-shadow:0 8px 22px rgba(36,48,66,.04);
       appearance:none;
       -webkit-appearance:none;
     }
@@ -222,13 +423,13 @@
     .option:hover{
       transform:translateY(-1px);
       border-color:var(--rose);
-      box-shadow:0 12px 28px rgba(0,0,0,.07);
+      box-shadow:0 12px 28px rgba(36,48,66,.08);
     }
 
     .option.selected{
       border-color:var(--rose);
-      background:var(--rose-2);
-      box-shadow:0 12px 28px rgba(201,55,110,.12);
+      background:linear-gradient(180deg,#fff,#fff7fa);
+      box-shadow:0 12px 28px rgba(196,90,122,.12);
     }
 
     .option-tag{
@@ -240,8 +441,8 @@
       padding:6px 10px;
       border-radius:999px;
       margin-bottom:10px;
-      background:var(--blue-2);
-      color:var(--blue);
+      background:var(--blue-soft);
+      color:#346d99;
     }
 
     .option strong{
@@ -274,8 +475,8 @@
       align-items:center;
       justify-content:center;
       gap:8px;
-      min-height:50px;
-      padding:14px 20px;
+      min-height:52px;
+      padding:14px 22px;
       border-radius:14px;
       font-weight:900;
       border:0;
@@ -288,10 +489,13 @@
     .btn-primary{
       background:var(--rose);
       color:#fff;
-      box-shadow:0 8px 18px rgba(0,0,0,.08);
+      box-shadow:0 8px 18px rgba(36,48,66,.10);
     }
 
-    .btn-primary:hover{filter:brightness(1.04)}
+    .btn-primary:hover{
+      filter:brightness(1.04);
+      transform:translateY(-1px);
+    }
 
     .btn-secondary{
       background:#fff;
@@ -306,13 +510,13 @@
 
     .final-card{
       display:none;
-      padding:28px 22px;
+      padding:30px 22px;
       text-align:center;
     }
 
     .final-pill{
       display:inline-block;
-      background:var(--rose-2);
+      background:var(--lavender);
       color:var(--rose);
       padding:8px 14px;
       border-radius:999px;
@@ -337,18 +541,34 @@
     .final-copy{
       color:var(--soft);
       font-size:18px;
-      line-height:1.65;
+      line-height:1.7;
+      margin:0 auto 16px;
+      max-width:760px;
+    }
+
+    .final-list{
+      max-width:620px;
       margin:0 auto 22px;
-      max-width:680px;
+      text-align:left;
+      display:grid;
+      gap:10px;
+    }
+
+    .final-list .check-item{
+      font-size:15px;
+      font-weight:800;
     }
 
     .whats-btn{
       background:var(--green);
       color:#fff;
-      box-shadow:0 8px 18px rgba(0,0,0,.08);
+      box-shadow:0 8px 18px rgba(36,48,66,.10);
     }
 
-    .whats-btn:hover{filter:brightness(1.04)}
+    .whats-btn:hover{
+      filter:brightness(1.04);
+      transform:translateY(-1px);
+    }
 
     .floating-whats{
       position:fixed;
@@ -371,35 +591,192 @@
       fill:#fff;
     }
 
-    .hidden{display:none !important}
+    .hidden{
+      display:none !important;
+    }
+
+    @media(min-width:860px){
+      .two-col{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .patterns-grid{
+        grid-template-columns:1fr 1fr;
+      }
+
+      .hero-card,
+      .patterns-shell,
+      .quiz-card,
+      .final-card{
+        padding:30px 28px;
+      }
+    }
 
     @media(max-width:640px){
       .quiz-nav .btn{
         width:100%;
       }
-         
+
+      .section{
+        padding:22px 14px;
+      }
+
+      .hero-card{
+        padding:24px 18px;
+      }
+
+      .pattern-name{
+        font-size:20px;
+      }
+    }
   </style>
 </head>
 <body>
 
   <div class="top-bar">Diagnóstico de Conversa</div>
 
-  <section class="hero">
+  <section class="section">
     <div class="wrap">
+
+      <!-- HERO -->
       <div class="hero-card">
-       
         <div class="eyebrow">1 minuto de clareza</div>
         <h1>Por que toda tentativa de conversa vira dor?</h1>
         <p class="subtitle">
-          Responda ao diagnóstico e envie suas respostas no WhatsApp para receber sua devolutiva personalizada.
+          Muitas vezes, o problema não é o casamento. O que gera dor nas conversas são padrões invisíveis de comportamento que aprendemos muito antes da relação existir.
         </p>
         <div class="divider"></div>
       </div>
 
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap grid two-col">
+
+      <!-- EXPLICAÇÃO -->
+      <div class="info-card">
+        <div class="section-kicker">O problema não é só a conversa</div>
+        <h2 class="section-title gradient">O verdadeiro motivo das conversas virarem dor</h2>
+        <p class="copy">
+          Muitas pessoas acreditam que o problema está no casamento. Mas, na maioria das vezes, <strong>o problema não é o casamento.</strong>
+        </p>
+        <p class="copy">
+          O que está por trás das dificuldades de conversa são <strong>padrões invisíveis de comportamento</strong> que surgem na infância e continuam agindo dentro da vida adulta, sem que você perceba.
+        </p>
+        <p class="copy">
+          É como um peixe que não sabe que está na água. Você vive dentro do padrão, mas muitas vezes <strong>não tem consciência dele.</strong>
+        </p>
+      </div>
+
+      <!-- INTRO PSICOLÓGICA -->
+      <div class="info-card">
+        <div class="section-kicker">O que acontece na prática</div>
+        <h2 class="section-title">Quando o padrão assume o controle...</h2>
+        <p class="copy">
+          A conversa deixa de ser um diálogo e vira <strong>defesa, ataque, fuga ou silêncio.</strong>
+        </p>
+        <p class="copy">
+          Durante a vida aprendemos muitos comportamentos, mas existem <strong>4 padrões principais</strong> que, quando não são percebidos, acabam gerando sofrimento dentro da relação.
+        </p>
+        <p class="copy">
+          Eles aparecem justamente nos momentos em que algo precisa ser conversado.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="patterns-shell">
+        <div class="patterns-head">
+          <div class="section-kicker">Os 4 padrões invisíveis</div>
+          <h2 class="section-title gradient">Os padrões que mais sabotam as conversas</h2>
+          <p class="copy">
+            Leia com calma. O objetivo aqui é te ajudar a perceber qual dinâmica pode estar mais presente na sua forma de conversar hoje.
+          </p>
+        </div>
+
+        <div class="patterns-grid">
+          <article class="pattern-card one">
+            <div class="pattern-top">
+              <span class="pattern-num">1</span>
+              <h3 class="pattern-name">Acúmulo e explosão</h3>
+              <span class="pattern-child">criança brava</span>
+            </div>
+            <p class="pattern-text">
+              Você vai relevando, aguentando e engolindo pequenas coisas para evitar conflito. Mas chega um momento em que tudo explode de uma vez. Não é apenas sobre o que aconteceu agora. É sobre tudo que ficou guardado.
+            </p>
+          </article>
+
+          <article class="pattern-card two">
+            <div class="pattern-top">
+              <span class="pattern-num">2</span>
+              <h3 class="pattern-name">Eu tento, mas o outro foge</h3>
+              <span class="pattern-child">criança assustada</span>
+            </div>
+            <p class="pattern-text">
+              Você tenta abrir conversa, insiste porque sente que algo precisa ser resolvido, mas o outro muda de assunto, se fecha ou sai da conversa. Esse padrão costuma trazer medo, tensão e sensação de insegurança emocional.
+            </p>
+          </article>
+
+          <article class="pattern-card three">
+            <div class="pattern-top">
+              <span class="pattern-num">3</span>
+              <h3 class="pattern-name">Só resolvo quando está por um fio</h3>
+              <span class="pattern-child">criança invisível</span>
+            </div>
+            <p class="pattern-text">
+              A conversa não acontece quando o problema começa. Ela só aparece quando tudo já está no limite. Pequenos sinais vão sendo ignorados até que a crise se torna grande demais para continuar evitando.
+            </p>
+          </article>
+
+          <article class="pattern-card four">
+            <div class="pattern-top">
+              <span class="pattern-num">4</span>
+              <h3 class="pattern-name">Eu me fecho</h3>
+              <span class="pattern-child">criança abandonada</span>
+            </div>
+            <p class="pattern-text">
+              Você prefere ficar em silêncio, evita tocar em assuntos delicados e tenta manter a paz por fora. Mas por dentro existe distância emocional. Esse padrão costuma aparecer quando não parece seguro expressar sentimentos e necessidades.
+            </p>
+          </article>
+        </div>
+
+        <div class="mini-note">
+          Porque esses padrões são automáticos, muita gente acredita que está apenas reagindo ao momento. Mas, na verdade, está reagindo a algo muito mais antigo.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <div class="info-card diagnostic-intro">
+        <div class="section-kicker">Agora responda o diagnóstico</div>
+        <h2 class="section-title gradient">Leva menos de 1 minuto</h2>
+        <p class="copy">
+          Nas próximas perguntas, escolha a opção que mais parece com você hoje.
+          Não existe resposta certa ou errada.
+        </p>
+        <div class="check-list">
+          <div class="check-item">✔ Identificar qual padrão pode estar presente na sua forma de conversar</div>
+          <div class="check-item">✔ Entender o que aparece quando algo te incomoda</div>
+          <div class="check-item">✔ Dar o primeiro passo para receber sua devolutiva personalizada</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+
+      <!-- QUIZ -->
       <div class="quiz-card" id="quizCard">
         <div class="lead-form">
           <label for="userName">Seu nome</label>
-          <input type="text" id="userName" placeholder="Digite seu nome para enviar junto com as respostas">
+          <input type="text" id="userName" placeholder="Digite seu nome para enviar junto com as respostas" aria-label="Seu nome">
         </div>
 
         <div class="quiz-top">
@@ -422,21 +799,33 @@
         </div>
       </div>
 
+      <!-- TELA FINAL -->
       <div class="final-card" id="finalCard">
-        <div class="final-pill">Pronto</div>
-        <h2 class="final-title">Agora envie suas respostas</h2>
+        <div class="final-pill">Seu diagnóstico foi concluído</div>
+        <h2 class="final-title">Você não está exagerando. Existe um padrão por trás disso.</h2>
         <p class="final-copy">
-          Seu resultado não aparece aqui. Toque no botão abaixo para enviar suas respostas no WhatsApp e receber sua devolutiva personalizada.
+          A forma como você reage nas conversas não surgiu do nada. Ela pode estar ligada a um padrão emocional aprendido há muito tempo.
+        </p>
+        <p class="final-copy">
+          Agora toque no botão abaixo para enviar suas respostas no WhatsApp e receber sua devolutiva personalizada.
         </p>
 
+        <div class="final-list">
+          <div class="check-item">✔ qual padrão está mais presente</div>
+          <div class="check-item">✔ o que ele revela sobre sua forma de conversar</div>
+          <div class="check-item">✔ por que suas conversas acabam em dor, silêncio ou explosão</div>
+        </div>
+
         <a class="btn whats-btn" id="whatsBtn" href="#" target="_blank" rel="noopener">
-          Enviar respostas no WhatsApp
+          Quero receber minha devolutiva no WhatsApp
         </a>
       </div>
+
     </div>
   </section>
 
-  <a class="floating-whats" href="https://wa.me/5549998110445?text=Ol%C3%A1!%20Quero%20saber%20mais%20sobre%20o%20mini%20diagn%C3%B3stico." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <!-- WHATSAPP FLUTUANTE -->
+  <a class="floating-whats" href="https://wa.me/5549998110445?text=Olá!%20Quero%20saber%20mais%20sobre%20o%20diagnóstico%20de%20conversa." target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
     <svg viewBox="0 0 24 24" aria-hidden="true">
       <path d="M20.5 3.5A10 10 0 0 0 3.2 17.7L2 22l4.4-1.2A10 10 0 1 0 20.5 3.5Zm-8.4 2.2c4.1 0 7.4 3.3 7.4 7.4a7.4 7.4 0 0 1-10.1 6.8l-.3-.1-2.6.7.7-2.5-.1-.3a7.4 7.4 0 0 1 5-11.9Zm4.2 9.8c-.2.6-1.1 1-1.5 1.1-.4.1-.9.1-1.5 0s-1.5-.5-2.6-1.1c-1-.6-1.8-1.6-2.1-2.1-.3-.5-.5-1.3-.1-1.9.2-.3.5-.8.8-.8h.6c.1 0 .4-.1.6.5.2.6.8 2 .9 2.2.1.2.1.4 0 .6s-.2.4-.4.6c-.2.2-.4.4-.2.7.2.3.9 1.4 2.1 2 .9.5 1.6.6 1.9.4.3-.2.4-.5.6-.8.2-.3.5-.4.8-.3l1.9.9c.3.1.5.3.6.5Z"/>
     </svg>
@@ -450,7 +839,7 @@
         title: "Quando algo te incomoda na relação, o que costuma acontecer primeiro?",
         text: "Marque a opção que mais combina com a forma como isso acontece hoje.",
         options: [
-          { label: "A", text: "Eu seguro por bastante tempo, vou relevando e tentando aguentar." },
+          { label: "A", text: "Eu guardo por bastante tempo, vou relevando e tentando aguentar." },
           { label: "B", text: "Eu tento falar, mas o outro se fecha, muda de assunto ou foge." },
           { label: "C", text: "Eu prefiro ficar quieto para evitar conflito ou desgaste." },
           { label: "D", text: "A conversa só acontece quando a situação já virou um problema grande." }
@@ -460,7 +849,7 @@
         title: "Quando vocês entram num assunto delicado, qual cenário é mais comum?",
         text: "Escolha o que mais se repete entre vocês.",
         options: [
-          { label: "A", text: "Eu já chego cheio de coisa acumulada e acabo falando tudo de uma vez." },
+          { label: "A", text: "Eu chego cheio de coisas acumuladas e acabo falando tudo de uma vez." },
           { label: "B", text: "Eu tento insistir porque preciso resolver, mas o outro sai da conversa." },
           { label: "C", text: "Eu penso que não vai adiantar e deixo para lá." },
           { label: "D", text: "A gente fala só quando a dor já explodiu e os dois estão no limite." }
@@ -547,7 +936,7 @@
       const name = userNameInput.value.trim();
       const parts = [];
 
-      parts.push("CONVERSA");
+      parts.push("DIAGNÓSTICO DE CONVERSA");
       parts.push("");
 
       if (name) {
@@ -563,7 +952,7 @@
       });
 
       parts.push("");
-      parts.push("Quero receber minha devolutiva.");
+      parts.push("Quero receber minha devolutiva personalizada.");
 
       return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(parts.join("\n"))}`;
     }
@@ -572,7 +961,7 @@
       whatsBtn.href = buildWhatsAppMessage();
       quizCard.classList.add("hidden");
       finalCard.style.display = "block";
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      window.scrollTo({ top: finalCard.offsetTop - 40, behavior: "smooth" });
     }
 
     nextBtn.addEventListener("click", () => {
